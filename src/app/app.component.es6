@@ -26,7 +26,7 @@ import {NgFor} from 'angular2/common'
 </form>
 <div class="ui grid posts">
   <reddit-article
-    *ngFor="#article of articles"
+    *ngFor="#article of sortedArticles()"
     [article]="article">
   </reddit-article>
 </div>
@@ -41,11 +41,15 @@ class AppComponent {
     ]
   }
 
-  addArticle(title, link) {
+  addArticle (title, link) {
     console.log(`Adding article title: ${title.value} and link: ${link.value}`)
     this.articles.push(new Article(title.value, link.value, 0));
     title.value = '';
     link.value = '';
+  }
+
+  sortedArticles () {
+    return this.articles.sort((a,b) => b.votes - a.votes);
   }
 
 }
