@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core'
+import {ArticleComponent} from './reddit.article.component';
 
 @Component({
   selector: 'app-component',
@@ -20,6 +21,10 @@ import {Component} from 'angular2/core'
     Submit link
   </button>
 </form>
+<div class="ui grid posts">
+  <reddit-article>
+  </reddit-article>
+</div>
   `
 })
 class AppComponent {
