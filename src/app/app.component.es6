@@ -3,6 +3,7 @@ import {ArticleComponent} from './reddit.article.component';
 
 @Component({
   selector: 'app-component',
+  directives: [ArticleComponent],
   template: `
 <form class="ui large form segment">
   <h3 class="ui header">Add a Link</h3>

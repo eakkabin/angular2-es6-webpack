@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core'
-
+import {Article} from './article'
 @Component({
   selector: 'reddit-article',
   host: {
@@ -8,23 +8,23 @@ import {Component} from 'angular2/core'
   template: `
   <div class="four wide column center aligned votes">
     <div class="ui statistic">
-      <div class="value">{{ votes }}</div>
+      <div class="value">{{ article.votes }}</div>
       <div class="label">Points</div>
     </div>
   </div>
   <div class="twelve wide column">
-    <a class="ui large header" href="{{ link }}">
-      {{ title }}
+    <a class="ui large header" href="{{ article.link }}">
+      {{ article.title }}
     </a>
     <ul class="ui big horizontal list voters">
       <li class="item">
-        <a (click)="voteUp()">
+        <a href (click)="voteUp()">
           <i class="arrow up icon"></i>
           upvote
         </a>
       </li>
       <li class="item">
-        <a (click)="voteDown()">
+        <a href (click)="voteDown()">
           <i class="arrow down icon"></i>
           downvote
         </a>
@@ -35,17 +35,17 @@ import {Component} from 'angular2/core'
 })
 class ArticleComponent {
   constructor () {
-    this.title = "Angular 2";
-    this.link = "http://angular.io";
-    this.votes = 10;
+    this.article = new Article('Angular 2', 'http://angular.io', 10);
   }
 
   voteUp() {
-    this.votes += 1;
+    this.article.votes += 1;
+    return false; // this for a tag no page refresh
   }
 
   voteDown() {
-    this.votes -= 1;
+    this.article.votes -= 1;
+    return false; // this for a tag no page refresh
   }
 
 }
