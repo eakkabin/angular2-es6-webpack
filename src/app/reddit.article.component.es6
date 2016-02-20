@@ -39,12 +39,12 @@ class ArticleComponent {
   }
 
   voteUp() {
-    this.article.votes += 1;
+    this.article.voteUp();
     return false; // this for a tag no page refresh
   }
 
   voteDown() {
-    this.article.votes -= 1;
+    this.article.voteDown();
     return false; // this for a tag no page refresh
   }
 

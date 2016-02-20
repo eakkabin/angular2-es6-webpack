@@ -4,6 +4,14 @@ class Article {
     this.link = link;
     this.votes = votes;
   }
+
+  voteUp () {
+    this.votes += 1;
+  }
+
+  voteDown () {
+    this.votes -= 1;
+  }
 }
 
 export {Article}
