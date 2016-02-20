@@ -30,6 +30,11 @@ import {ArticleComponent} from './reddit.article.component';
 })
 class AppComponent {
   constructor () {
+    this.articles = [
+      new Article('Angular2', 'http://angular.io', 3),
+      new Article('Fullstack', 'http://fullstack.io', 2),
+      new Article('AngularJS', 'http://angular.org', 1)
+    ]
   }
 
   addArticle(title, link) {
