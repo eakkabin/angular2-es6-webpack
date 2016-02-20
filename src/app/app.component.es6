@@ -1,5 +1,7 @@
 import {Component} from 'angular2/core'
+import {Article} from './article'
 import {ArticleComponent} from './reddit.article.component';
+import {NgFor} from 'angular2/common'
 
 @Component({
   selector: 'app-component',
@@ -23,7 +25,9 @@ import {ArticleComponent} from './reddit.article.component';
   </button>
 </form>
 <div class="ui grid posts">
-  <reddit-article>
+  <reddit-article
+    *ngFor="#article of articles"
+    [article]="article">
   </reddit-article>
 </div>
   `
