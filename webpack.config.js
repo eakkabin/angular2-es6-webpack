@@ -12,7 +12,7 @@ module.exports = {
     filename: "[name].bundle.js"
   },
   resolve: {
-    extensions: ['', '.js', '.es6'] // default extensions is JS
+    extensions: ['.es6', '.js', '.css', ''] // default extensions is JS
   },
   module: {
     // if you have something to do before loader like linter use on preload
@@ -25,7 +25,11 @@ module.exports = {
      ]
     */
     loaders: [
-      { test: /\.css$/, loader: "style!css" },
+      {
+        test: /\.css$/,
+        include: path.resolve(__dirname, 'stylesheets'),
+        loader: "style!css"
+      },
       {
         test: /\.es6$/,
         exclude: /node_modules/,
