@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core'
 import {Product} from './product'
+import {ProductList} from './product.list.component'
 
 @Component({
   selector: 'app-component',

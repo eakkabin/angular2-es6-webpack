@@ -1,5 +1,8 @@
 import {Component} from 'angular2/core'
 import {EventEmitter} from 'angular2/core'
+import {NgFor} from 'angular2/common'
+import {ProductRow} from './product.row.component'
+
 @Component({
   selector: 'products-list',
   directives: [ProductRow],
@@ -8,10 +11,10 @@ import {EventEmitter} from 'angular2/core'
   template: `
   <div class="ui items">
     <product-row
-      *ngFor="#myProduct of productList"
-      [product]="myProduct"
-      (click)="clicked(myProduct)"
-      [class.selected]="isSelected(myProduct)">
+      *ngFor="#product of productList"
+      [product]="product"
+      (click)="clicked(product)"
+      [class.selected]="isSelected(product)">
     </product-row>
   </div>
   `
@@ -40,3 +43,4 @@ class ProductList {
     return product.sku === this.currentProduct.sku;
   }
 }
+export {ProductList}
