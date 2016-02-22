@@ -1,12 +1,12 @@
 import {Component} from 'angular2/core'
-import {DemoFormSku} from './demo_form_sku.component'
+import {DemoFormSkuBuilder} from './demo_form_sku.component'
 
 @Component({
   selector: 'app-component',
-  directives: [DemoFormSku],
+  directives: [DemoFormSkuBuilder],
   template: `<h1>Hello angular2</h1>
-  <demo-form-sku>
-  </demo-form-sku>
+  <demo-form-sku-builder>
+  </demo-form-sku-builder>
   `
 })
 class AppComponent {
