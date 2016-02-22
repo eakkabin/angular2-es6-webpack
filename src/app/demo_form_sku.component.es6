@@ -2,7 +2,9 @@ import {Component} from 'angular2/core'
 import {
   FORM_DIRECTIVES,
   FormBuilder,
-  ControlGroup
+  ControlGroup,
+  Validators,
+  AbstractControl
 } from 'angular2/common'
 
 @Component({
@@ -31,8 +33,10 @@ class DemoFormSkuBuilder {
 
   contructor (formBuilder) {
       this.myForm = formBuilder.group({
-        'sku': ['ABC123']
+        'sku': ['', Validators.required]
       })
+
+      this.sku = this.myForm.controls['sku'];
   }
 
   onSubmit(value) {
