@@ -3,8 +3,7 @@ import {
   FORM_DIRECTIVES,
   FormBuilder,
   ControlGroup,
-  Validators,
-  AbstractControl
+  Validators
 } from 'angular2/common'
 
 @Component({
@@ -31,12 +30,15 @@ import {
 })
 class DemoFormSkuBuilder {
 
-  contructor (formBuilder) {
-      this.myForm = formBuilder.group({
-        'sku': ['', Validators.required]
-      })
+  constructor(fb) {
+    this.fb = fb;
+    this.myForm = this.fb.group({
+      'sku': ['', Validators.required]
+    })
+  }
 
-      this.sku = this.myForm.controls['sku'];
+  static get parameters() {
+    return [[FormBuilder]];
   }
 
   onSubmit(value) {
