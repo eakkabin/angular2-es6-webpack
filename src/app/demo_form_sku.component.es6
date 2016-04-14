@@ -1,29 +1,40 @@
 import {Component} from 'angular2/core'
 import {
+  CORE_DIRECTIVES,
   FORM_DIRECTIVES,
   FormBuilder,
   ControlGroup,
-  Validators
+  Validators,
+  AbstractControl
 } from 'angular2/common'
 
 @Component({
   selector: 'demo-form-sku-builder',
-  directives: [FORM_DIRECTIVES],
+  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: `
   <div class="ui raised segment">
     <h2 class="ui header">Demo Form: Sku with FormBuilder</h2>
     <form class="ui form"
       [ngFormModel]="myForm"
       (ngSubmit)="onSubmit(myForm.value)">
-      <div class="field">
+
+      <div class="field"
+          [class.error]="!sku.valid && sku.touched">
         <label for="skuInput">SKU</label>
         <input type="text"
-          id="skuInput"
-          placeholder="SKU"
-          [ngFormControl]="myForm.controls['sku']">
+               id="skuInput"
+               placeholder="SKU"
+               [ngFormControl]="sku">
+         <div *ngIf="!sku.valid"
+           class="ui error message">SKU is invalid</div>
+         <div *ngIf="sku.hasError('required')"
+           class="ui error message">SKU is required</div>
       </div>
 
-      <button type="submit" class="ui button">Submit</button>
+      <div *ngIf="!myForm.valid"
+        class="ui error message">Form is invalid</div>
+
+      <button type="submit" class="ui button">Submit!</button>
     </form>
   </div>
   `
@@ -35,6 +46,7 @@ class DemoFormSkuBuilder {
     this.myForm = this.fb.group({
       'sku': ['', Validators.required]
     })
+    this.sku = this.myForm.controls['sku'];
   }
 
   static get parameters() {
