@@ -24,38 +24,28 @@ function skuValidator(control) {
       [ngFormModel]="myForm"
       (ngSubmit)="onSubmit(myForm.value)">
 
-      <div class="field"
-          [class.error]="!sku.valid && sku.touched">
-        <label for="skuInput">SKU</label>
+      <div class="field">
+        <label for="skuInput">Product Name</label>
         <input type="text"
-               id="skuInput"
-               placeholder="SKU"
-               [ngFormControl]="sku">
-         <div *ngIf="!sku.valid"
-           class="ui error message">SKU is invalid</div>
-         <div *ngIf="sku.hasError('required')"
-           class="ui error message">SKU is required</div>
+               [ngFormControl]="myForm.find('productName')"
+               [(ngModel)]="productName">
       </div>
-
-      <div *ngIf="!myForm.valid"
-        class="ui error message">Form is invalid</div>
+      <div class="ui info message">
+        The Product name is: {{productName}}
+      </div>
 
       <button type="submit" class="ui button">Submit!</button>
     </form>
   </div>
   `
 })
-class DemoFormSkuBuilder {
+export class DemoFormNgModel {
 
   constructor(fb) {
     this.fb = fb;
     this.myForm = this.fb.group({
-      'sku': ['', Validators.compose([Validators.required, skuValidator])]
+      'productName': ['', Validators.required]
     })
-    this.sku = this.myForm.controls['sku'];
-
-    this.sku.valueChanges.subscribe((value) => { console.log('sku changed to: ', value)});
-    this.myForm.valueChanges.subscribe((form) => { console.log('form changed to: ', form)});
   }
 
   static get parameters() {
@@ -66,4 +56,3 @@ class DemoFormSkuBuilder {
     console.log("you submitted value: ", value);
   }
 }
-export {DemoFormSkuBuilder}
