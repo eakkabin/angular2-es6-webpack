@@ -53,6 +53,9 @@ class DemoFormSkuBuilder {
       'sku': ['', Validators.compose([Validators.required, skuValidator])]
     })
     this.sku = this.myForm.controls['sku'];
+
+    this.sku.valueChanges.subscribe((value) => { console.log('sku changed to: ', value)});
+    this.myForm.valueChanges.subscribe((form) => { console.log('form changed to: ', form)});
   }
 
   static get parameters() {
