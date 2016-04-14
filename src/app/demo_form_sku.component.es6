@@ -8,6 +8,12 @@ import {
   AbstractControl
 } from 'angular2/common'
 
+function skuValidator(control) {
+  if (!control.value.match(/^123/)) {
+    return {invalidSku: true};
+  }
+}
+
 @Component({
   selector: 'demo-form-sku-builder',
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],
@@ -44,7 +50,7 @@ class DemoFormSkuBuilder {
   constructor(fb) {
     this.fb = fb;
     this.myForm = this.fb.group({
-      'sku': ['', Validators.required]
+      'sku': ['', Validators.compose([Validators.required, skuValidator])]
     })
     this.sku = this.myForm.controls['sku'];
   }
